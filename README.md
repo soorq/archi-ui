@@ -103,8 +103,8 @@ TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rol
 
 Two actions are added by default:
 
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [size-limit](https://github.com/ai/size-limit)
+-   `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
+-   `size` which comments cost comparison of your library on every pull request using [size-limit](https://github.com/ai/size-limit)
 
 ## Optimizations
 
@@ -179,3 +179,47 @@ Change the `alias` to point to where those packages are actually installed. This
 ```
 
 An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+
+```
+archi-ui
+├─ .eslintignore
+├─ .eslintrc.js
+├─ .gitignore
+├─ .storybook
+│  ├─ main.js
+│  └─ preview.js
+├─ LICENSE
+├─ package.json
+├─ postcss.config.js
+├─ README.md
+├─ rollup.config.js
+├─ src
+│  ├─ components
+│  │  ├─ Button
+│  │  │  ├─ Button.component.tsx
+│  │  │  ├─ Button.stories.tsx
+│  │  │  ├─ Button.types.ts
+│  │  │  └─ Button.variants.ts
+│  │  ├─ index.ts
+│  │  └─ Slot
+│  │     ├─ index.ts
+│  │     └─ Slot.component.ts
+│  ├─ core
+│  │  ├─ assets
+│  │  │  └─ icons
+│  │  │     ├─ a-arrow-down.svg
+│  │  │     └─ arrow-up-z-a.svg
+│  │  └─ styles
+│  │     └─ main.css
+│  ├─ global.d.ts
+│  ├─ index.ts
+│  └─ libs
+│     ├─ merge
+│     │  └─ index.ts
+│     └─ types
+│        └─ asChild.type.ts
+├─ tailwind.config.js
+├─ tsconfig.json
+└─ yarn.lock
+
+```

@@ -7,16 +7,18 @@ const meta: Meta<typeof Button> = {
     component: Button,
     argTypes: {
         asChild: {
-            control: false,
+            control: { type: "boolean", disable: true },
             name: "asChild",
-            description: "Для разных случаев пригождается",
+            description:
+                "В случае, если есть ребенок, которому нужно передать все стили и dom ветку",
+            table: { defaultValue: { summary: "false" } },
             type: "boolean",
-            defaultValue: "false",
         },
         variant: {
             control: { presetColors: true, labels: false, type: "select" },
-            description: 'Тип кнопки для последующего определения стилей',
-            type: 'string',
+            description: "Тип кнопки для последующего определения стилей",
+            type: "string",
+            table: { defaultValue: { summary: "default" } },
             options: [
                 "default",
                 "primary",
@@ -31,6 +33,10 @@ const meta: Meta<typeof Button> = {
         },
         size: {
             description: "Размер кнопки",
+            control: { type: "select" },
+            table: { defaultValue: { summary: "default" } },
+            options: ["default", "sm", "md", "lg", "icon"],
+            type: "string",
         },
     },
     tags: ["components", "button"],

@@ -1,35 +1,38 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 import type { ButtonProps } from "./button.types";
-import Slot from "../Slot";
 import React from "react";
+import Slot from "../Slot";
 
-export const VariantsButtons = cva("h-7 w-fit focus:outline-none focus-visible:ring border-none ring-ring focus-visible:ring-offset-2 rounded-md flex justify-center items-center hover:bg-black text-white", {
-variants: {
-        variant: {
-            default: "outline-none",
-            primary: "bg-blue-500 text-white",
-            secondary: "bg-gray-500 text-white",
-            ghost: "bg-transparent text-black",
-            outline: "border border-gray-500 text-black",
-            success: "bg-green-500 text-white",
-            destructive: "bg-red-500 text-white",
-            link: "hover:underline",
-            icon: "font-semibold p-1",
+export const VariantsButtons = cva(
+    "h-7 w-fit focus:outline-none focus-visible:ring border-none ring-ring focus-visible:ring-offset-2 rounded-md flex justify-center items-center hover:bg-black text-white",
+    {
+        variants: {
+            variant: {
+                default: "outline-none",
+                primary: "bg-blue-500 text-white",
+                secondary: "bg-gray-500 text-white",
+                ghost: "bg-transparent text-black",
+                outline: "border border-gray-500 text-black",
+                success: "bg-green-500 text-white",
+                destructive: "bg-red-500 text-white",
+                link: "hover:underline",
+                icon: "font-semibold p-1",
+            },
+            size: {
+                default: "px-4 py-2",
+                sm: "px-2 py-1 text-sm",
+                md: "px-4 py-2 text-base",
+                lg: "px-6 py-3 text-lg",
+                icon: "p-1",
+            },
         },
-        size: {
-            default: "px-4 py-2",
-            sm: "px-2 py-1 text-sm",
-            md: "px-4 py-2 text-base",
-            lg: "px-6 py-3 text-lg",
-            icon: "p-1",
+        defaultVariants: {
+            variant: "default",
+            size: "default",
         },
     },
-    defaultVariants: {
-        variant: "default",
-        size: "default",
-    },
-});
+);
 
 /**
  * Renders a button component with specified size and variant.
@@ -48,20 +51,25 @@ variants: {
  *
  * @returns {JSX.Element} The rendered Button component.
  */
-function Button({ asChild, ref, size, variant, ...props }: ButtonProps) {
-    const Comp = asChild ? Slot : "button";
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ asChild, size, variant, ...props }, ref) => {
+        const Comp = asChild ? Slot : "button";
 
-    return (
-        <Comp
-            {...props}
-            className={VariantsButtons({
-                size,
-                variant,
-                className: props.className,
-            })}
-        />
-    );
-}
+        return (
+            <Comp
+                {...props}
+                ref={ref}
+                className={VariantsButtons({
+                    size,
+                    variant,
+                    className: props.className,
+                })}
+            />
+        );
+    },
+);
+
+Button.displayName = "Button";
 
 export default Button;
 

@@ -190,7 +190,7 @@ archi-ui
 │  └─ preview.js
 ├─ LICENSE
 ├─ package.json
-├─ postcss.config.js
+├─ postcss.config.cjs
 ├─ README.md
 ├─ rollup.config.js
 ├─ src
@@ -218,7 +218,7 @@ archi-ui
 │     │  └─ index.ts
 │     └─ types
 │        └─ asChild.type.ts
-├─ tailwind.config.js
+├─ tailwind.config.cjs
 ├─ tsconfig.json
 └─ yarn.lock
 

@@ -3,14 +3,13 @@ import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
 import postcss from "rollup-plugin-postcss";
 import terser from "@rollup/plugin-terser";
-import tailwindcss from 'tailwindcss';
+import tailwindcss from "tailwindcss";
 import url from "@rollup/plugin-url";
 import dts from "rollup-plugin-dts";
 import svgr from "@svgr/rollup";
 
-const twCfg = require('./tailwind.config.js')
+const twCfg = require("./tailwind.config.cjs");
 
-/** @type {import('rollup').RollupOptions} */
 const config = [
     {
         input: "src/index.ts",
@@ -32,14 +31,14 @@ const config = [
             }),
             postcss({
                 config: {
-                    path: "./postcss.config.js",
+                    path: "./postcss.config.cjs",
                 },
                 extensions: [".css"],
                 minimize: true,
                 inject: {
                     insertAt: "top",
                 },
-                plugins: [tailwindcss(twCfg)]
+                plugins: [tailwindcss(twCfg)],
             }),
             svgr({ icon: true }),
             commonjs(),
@@ -50,9 +49,7 @@ const config = [
     {
         input: "dist/esm/types/index.d.ts",
         output: [{ file: pgk.types, format: "esm" }],
-        external: [
-            /\.(css|less|scss)$/
-        ],
+        external: [/\.(css|less|scss)$/],
         plugins: [dts.default()],
     },
 ];
